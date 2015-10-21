@@ -3,12 +3,13 @@ TinyMapper - a quick object mapper for .Net
 [![Nuget downloads](http://img.shields.io/nuget/dt/tinymapper.svg)](https://www.nuget.org/packages/TinyMapper/)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/TinyMapper/TinyMapper/blob/master/LICENSE)
 [![GitHub license](https://img.shields.io/badge/first--timers--only-friendly-blue.svg)](http://www.firsttimersonly.com/)
+[![Build status](https://ci.appveyor.com/api/projects/status/n36c2i10bjaj1f93?svg=true)](https://ci.appveyor.com/project/Behzadkhosravifar/tinymapper)
+
 
 ## Performance Comparison
 
 ![Performance Comparison](https://raw.githubusercontent.com/TinyMapper/TinyMapper/master/Source/Benchmark/DataSource/PrimitiveTypeMapping.jpg)
 
-[![Build status](https://ci.appveyor.com/api/projects/status/n36c2i10bjaj1f93?svg=true)](https://ci.appveyor.com/project/Behzadkhosravifar/tinymapper)
 
 ## Installation
 
@@ -64,7 +65,7 @@ var personDto = TinyMapper.Map<PersonDto>(person);
  * [How to create custom mapping](https://github.com/TinyMapper/TinyMapper/wiki/Custom-mapping)
 
 
- ## This Contribute (Behzad Khosravifar) Updates
+ ## This Contribute Updates
 
  * Map DataRow to object
  * Map IDataRecord to object
