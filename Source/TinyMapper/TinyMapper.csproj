@@ -68,6 +68,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
@@ -93,6 +95,8 @@
     <Compile Include="Mappers\Classes\Members\MappingMemberBuilder.cs" />
     <Compile Include="Mappers\Classes\Members\MappingMember.cs" />
     <Compile Include="Core\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Mappers\TargetMapperBuilder.IDataRecord.cs" />
+    <Compile Include="Mappers\TargetMapperBuilder.DataRow.cs" />
     <Compile Include="Mappers\Types\Convertible\ConvertibleTypeMapper.cs" />
     <Compile Include="Mappers\Types\Convertible\ConvertibleTypeMapperBuilder.cs" />
     <Compile Include="Mappers\Types\Custom\CustomTypeMapper.cs" />
@@ -125,10 +129,12 @@
     <Compile Include="Core\Extensions\ObjectExtensions.cs" />
     <Compile Include="Core\Extensions\OptionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TinyMapper.IDataRecord.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="nuget\tinymapper.nuspec" />
     <None Include="nuget\tools\install.ps1" />
+    <Compile Include="TinyMapper.DataRow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

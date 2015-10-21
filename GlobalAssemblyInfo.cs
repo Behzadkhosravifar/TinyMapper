@@ -12,8 +12,8 @@
 [assembly: System.Reflection.AssemblyCopyright("Copyright © Sergey Morenko. Since 2015")]
 [assembly: System.Reflection.AssemblyTrademark("TinyMapper")]
 [assembly: System.Reflection.AssemblyConfiguration("Release")]
-[assembly: System.Reflection.AssemblyVersion("0.0.0.0")]
-[assembly: System.Reflection.AssemblyFileVersion("0.0.0.0")]
+[assembly: System.Reflection.AssemblyVersion("2.3.0.0")]
+[assembly: System.Reflection.AssemblyFileVersion("2.3.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersion("Compiled By Serjo")]
 
 

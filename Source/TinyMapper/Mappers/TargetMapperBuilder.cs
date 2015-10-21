@@ -12,7 +12,7 @@ using Nelibur.ObjectMapper.Reflection;
 
 namespace Nelibur.ObjectMapper.Mappers
 {
-    internal sealed class TargetMapperBuilder : IMapperBuilderConfig
+    internal sealed partial class TargetMapperBuilder : IMapperBuilderConfig
     {
         private readonly Dictionary<TypePair, BindingConfig> _bindingConfigs = new Dictionary<TypePair, BindingConfig>();
         private readonly ClassMapperBuilder _classMapperBuilder;

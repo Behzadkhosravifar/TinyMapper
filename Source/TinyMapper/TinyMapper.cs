@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Nelibur.ObjectMapper.Bindings;
 using Nelibur.ObjectMapper.Core;
 using Nelibur.ObjectMapper.Core.DataStructures;
@@ -9,22 +10,23 @@ using Nelibur.ObjectMapper.Reflection;
 
 namespace Nelibur.ObjectMapper
 {
-    public static class TinyMapper
+    public static partial class TinyMapper
     {
-        private static readonly Dictionary<TypePair, Mapper> _mappers = new Dictionary<TypePair, Mapper>();
-        private static readonly TargetMapperBuilder _targetMapperBuilder;
+                private static readonly Dictionary<TypePair, Mapper> Mappers = new Dictionary<TypePair, Mapper>();
+        private static readonly TargetMapperBuilder TargetMapperBuilder;
+        private static readonly Dictionary<TypePair, MethodInfo> TargetMappers = new Dictionary<TypePair, MethodInfo>();
 
         static TinyMapper()
         {
             IDynamicAssembly assembly = DynamicAssemblyBuilder.Get();
-            _targetMapperBuilder = new TargetMapperBuilder(assembly);
+            TargetMapperBuilder = new TargetMapperBuilder(assembly);
         }
 
         public static void Bind<TSource, TTarget>()
         {
             TypePair typePair = TypePair.Create<TSource, TTarget>();
 
-            _mappers[typePair] = _targetMapperBuilder.Build(typePair);
+            Mappers[typePair] = TargetMapperBuilder.Build(typePair);
         }
 
         public static void Bind<TSource, TTarget>(Action<IBindingConfig<TSource, TTarget>> config)
@@ -34,10 +36,10 @@ namespace Nelibur.ObjectMapper
             var bindingConfig = new BindingConfigOf<TSource, TTarget>();
             config(bindingConfig);
 
-            _mappers[typePair] = _targetMapperBuilder.Build(typePair, bindingConfig);
+            Mappers[typePair] = TargetMapperBuilder.Build(typePair, bindingConfig);
         }
 
-        public static TTarget Map<TSource, TTarget>(TSource source, TTarget target = default(TTarget))
+        public static TTarget Map<TSource, TTarget>(this TSource source, TTarget target = default(TTarget))
         {
             TypePair typePair = TypePair.Create<TSource, TTarget>();
 
@@ -53,8 +55,8 @@ namespace Nelibur.ObjectMapper
         /// <typeparam name="TTarget">The type of the target.</typeparam>
         /// <param name="source">The source value.</param>
         /// <returns>Value</returns>
-        /// <remarks>For mapping nullable type use <see cref="Map{TTarget}" />method.</remarks>
-        public static TTarget Map<TTarget>(object source)
+        /// <remarks>For mapping nullable type use <see cref="Map{TSource, TTarget}" />method.</remarks>
+        public static TTarget Map<TTarget>(this object source)
         {
             if (source.IsNull())
             {
@@ -72,12 +74,28 @@ namespace Nelibur.ObjectMapper
         private static Mapper GetMapper(TypePair typePair)
         {
             Mapper mapper;
-            if (_mappers.TryGetValue(typePair, out mapper) == false)
+            if (Mappers.TryGetValue(typePair, out mapper) == false)
             {
-                mapper = _targetMapperBuilder.Build(typePair);
-                _mappers[typePair] = mapper;
+                mapper = TargetMapperBuilder.Build(typePair);
+                Mappers[typePair] = mapper;
             }
             return mapper;
+        }
+
+        internal static bool IsMicrosoftType(this Type type)
+        {
+            if (type == null)
+                throw new ArgumentNullException("type");
+
+            if (type.Assembly.GetName().Name.Equals("mscorlib", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            object[] atts = type.Assembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), true);
+            if (atts.Length == 0)
+                return false;
+
+            AssemblyCompanyAttribute aca = (AssemblyCompanyAttribute)atts[0];
+            return aca.Company != null && aca.Company.IndexOf("Microsoft Corporation", StringComparison.OrdinalIgnoreCase) >= 0;
         }
     }
 }

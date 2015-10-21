@@ -8,6 +8,8 @@ TinyMapper - a quick object mapper for .Net
 
 ![Performance Comparison](https://raw.githubusercontent.com/TinyMapper/TinyMapper/master/Source/Benchmark/DataSource/PrimitiveTypeMapping.jpg)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/n36c2i10bjaj1f93?svg=true)](https://ci.appveyor.com/project/Behzadkhosravifar/tinymapper)
+
 ## Installation
 
 Available on [nuget](https://www.nuget.org/packages/TinyMapper/)
@@ -60,14 +62,11 @@ var personDto = TinyMapper.Map<PersonDto>(person);
  * [TinyMapper: yet another object to object mapper for .net](http://www.codeproject.com/Articles/886420/TinyMapper-yet-another-object-to-object-mapper-for)
  * [Complex mapping](https://github.com/TinyMapper/TinyMapper/wiki/Complex-mapping)
  * [How to create custom mapping](https://github.com/TinyMapper/TinyMapper/wiki/Custom-mapping)
- 
-## Contributors
-A big thanks to all of TinyMapper's contributors:
- 
- * [iEmiya](https://github.com/iEmiya)
- * [lijaso](https://github.com/lijaso)
- * [nomailme](https://github.com/nomailme)
- * [Skaiol](https://github.com/Skaiol)
- * [Sufflavus](https://github.com/Sufflavus)
- * [qihangnet](https://github.com/qihangnet)
- * [teknogecko](https://github.com/teknogecko)
+
+
+ ## This Contribute (Behzad Khosravifar) Updates
+
+ * Map DataRow to object
+ * Map IDataRecord to object
+ * Map DataTable and IDataReader to List<object>
+ * Map to DynamicObject
