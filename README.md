@@ -63,8 +63,8 @@ var personDto = TinyMapper.Map<PersonDto>(person);
  * [Complex mapping](https://github.com/TinyMapper/TinyMapper/wiki/Complex-mapping)
  * [How to create custom mapping](https://github.com/TinyMapper/TinyMapper/wiki/Custom-mapping)
 
-
- ## This Contribute Updates
+----------------------------
+## This Contribute Updates
 
  * Map DataRow to object
  * Map IDataRecord to object
